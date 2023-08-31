@@ -19,13 +19,13 @@ namespace SuperHeroAPIDotNet7.Controllers
         [HttpGet]
         public async Task<ActionResult<List<SuperHero>>> GetAllHeros()
         {
-            return _superHeroService.GetAllHeros();            
+            return await _superHeroService.GetAllHeros();            
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<SuperHero>> GetSingleHero(int id)
         {
-            var result = _superHeroService.GetSingleHero(id);
+            var result = await _superHeroService.GetSingleHero(id);
             if (result is null)
                 return NotFound("Hero not found.");
 
@@ -35,14 +35,14 @@ namespace SuperHeroAPIDotNet7.Controllers
         [HttpPost]
         public async Task<ActionResult<List<SuperHero>>> AddHero(SuperHero hero)
         {
-            var result = _superHeroService.AddHero(hero);
+            var result = await _superHeroService.AddHero(hero);
             return Ok(result);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<SuperHero>> UpdateHero(int id, SuperHero request)
         {
-            var result = _superHeroService.UpdateHero(id, request);
+            var result = await _superHeroService.UpdateHero(id, request);
             if (result is null)
                 return NotFound("Hero not found.");
 
@@ -52,7 +52,7 @@ namespace SuperHeroAPIDotNet7.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<SuperHero>> DeleteHero(int id)
         {
-            var result = _superHeroService.DeleteHero(id);
+            var result = await _superHeroService.DeleteHero(id);
             if (result is null)
                 return NotFound("Hero not found.");
 
